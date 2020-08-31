@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
+  devtool: 'inline-source-map',
   output: {
     path: __dirname+'/static',
     filename: "[name].[chunkhash:8].js"
@@ -14,12 +15,22 @@ module.exports = {
         use: {
           loader: "babel-loader",
           query: {
+            plugins: ["@babel/plugin-transform-runtime",
+              "@babel/plugin-proposal-optional-chaining"
+            ],
             presets: [
-              "@babel/preset-env",
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    node: 'current'
+                  }
+                }
+              ],
               "@babel/preset-react"
             ]
           }
-        },
+        }
       },
       {
         test: /\.html$/,
@@ -31,8 +42,20 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [
@@ -40,5 +63,9 @@ module.exports = {
       template: "./public/index.html",
       filename: "./index.html"
     })
-  ]
+  ],
+  devServer: {
+    compress: false,
+    port: 9000
+  }
 };

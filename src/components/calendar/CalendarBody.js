@@ -1,29 +1,19 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import moment from 'moment';
 import range from 'lodash/range';
 import chunk from 'lodash/chunk';
 import flow from 'lodash/flow';
 
+import CalendarDay from './CalendarDay';
+
 const StyledRow = styled(Row)`
     && {
         padding: 0;
         margin: 0 5px 0 5px;
         height: 18.5vh;
-    }
-`;
-
-const StyledCol = styled(Col)`
-    && {
-        padding: 0;
-        border: 1px solid;
-    }
-`;
-const StyledGreyCol = styled(StyledCol)`
-    && {
-        background: #e2e3e5;
-        color: #383d41;
     }
 `;
 
@@ -34,22 +24,35 @@ const CalendarBody = () => {
         const lastDayPreviousMonth = moment().subtract(1, 'months')
         .startOf('month').daysInMonth();
         const daysFromNextMonth = (35 - 2 - lastDayOfCurrentMonth);
+
         return chunk([(lastDayPreviousMonth - 1), lastDayPreviousMonth,
             ...range(1, (lastDayOfCurrentMonth + 1)),
             ...range(1, (daysFromNextMonth + 1))], 7);
     };
 
+    const getActiveDay = day => moment().date() === day;
+
+    const getCalendarRow = element => {
+        const firstDay = element.shift();
+        const lastDay = element.pop();
+
+        return (<React.Fragment>
+                <CalendarDay day={firstDay} isDark />
+                {element.map(day => (<CalendarDay
+                        key={day}
+                        day={day} 
+                    />))}
+                <CalendarDay day={lastDay} isDark />
+            </React.Fragment>);
+    };
+
     const getComponentByDays = dayList => {
         return dayList.map(element => 
-            (<StyledRow key={new Buffer(JSON.stringify(element))
-                .toString('base64')}>
-                <StyledGreyCol lg={true}>{element.shift()}</StyledGreyCol>
-                {element.map(day => <StyledCol key={day} lg={true}>
-                        <span style={{ paddingLeft: '5px' }}>{day}</span>
-                    </StyledCol>)}
+            (<StyledRow key={new Buffer(element).toString('base64')}>
+                {getCalendarRow(element)}
             </StyledRow>)
         );
-    }
+    };
 
     return (<React.Fragment>
             {flow(getCalendarDays, getComponentByDays)()}

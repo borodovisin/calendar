@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
@@ -10,8 +11,9 @@ const StyledRow = styled(Row)`
         padding-bottom: 5px;
         margin: 10px 5px 0 5px;
         border: 1px solid #004085;
+        font-weight: bold;
     }
-`
+`;
 
 const CalendarHeader = () => {
     return (<StyledRow className="text-center">

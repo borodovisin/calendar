@@ -1,12 +1,21 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Calendar from './components/Calendar';
+import {Provider} from "mobx-react";
 import * as serviceWorker from './serviceWorker';
+
+import Calendar from './components/Calendar';
+import createStore from './mst/createStore';
+
+import './index.css';
+
+const store = createStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Calendar />
+    <Provider store={store}>
+      <Calendar />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

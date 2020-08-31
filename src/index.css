@@ -16,3 +16,55 @@ code {
   background: #e2e3e5;
   color: #383d41;
 }
+
+.calendar-day {
+  margin-top: 2px;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+.calendar-day-active {
+  display: inline-block;
+  background: #fff3cd;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  color: #856404;
+}
+
+.container-fluid:nth-child(2) {
+  background: red;
+}
+
+
+.col-dark {
+  background: #e2e3e5;
+  color: #004085;
+}
+
+button.close
+{
+  outline: none;
+}
+
+.popover {
+  width: 250px;
+}
+
+.weather-icon {
+  position: absolute;
+  left: -13px;
+  top: -8px;
+}
+
+.container-reminder {
+  padding-left: 4px;
+  max-height: 144px;
+  overflow: auto;
+}
+
+.hand-cursor {
+  cursor: pointer;
+}
