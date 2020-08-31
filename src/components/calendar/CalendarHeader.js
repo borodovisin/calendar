@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
 import { inject, observer }  from 'mobx-react';
-import styled from 'styled-components';
 import moment from 'moment';
 
 import { StyledRow } from '../../utils/styledComponent';
@@ -45,6 +45,10 @@ const CalendarHeader = props => {
             <Col lg={true}>Saturday</Col>
         </StyledRow>
     </React.Fragment>);
+};
+
+CalendarHeader.propTypes = {
+    store: PropTypes.object.isRequired
 };
 
 export default inject('store')(observer(CalendarHeader));

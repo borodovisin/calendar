@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import moment from 'moment';
@@ -63,6 +64,10 @@ const CalendarBody = props => {
             {flow(getCalendarDays, getComponentByDays)()}
         </React.Fragment>
     );
+};
+
+CalendarBody.propTypes = {
+    store: PropTypes.object.isRequired
 };
 
 export default inject('store')(observer(CalendarBody));

@@ -158,13 +158,15 @@ const PopoverContent = props => {
                 <Button className="float-right" type="submit">
                         <i className="fa fa-save"></i>
                 </Button>
-                <Button className="float-right"
-                    variant="danger"
-                    style={{ marginRight: '5px' }}
-                    onClick={handleRemove}
-                    >
-                    <i className="fa fa-trash"></i>
-                </Button>
+                {!isEmpty(props.store.selectedKey) &&
+                    <Button className="float-right"
+                        variant="danger"
+                        style={{ marginRight: '5px' }}
+                        onClick={handleRemove}
+                        >
+                        <i className="fa fa-trash"></i>
+                    </Button>
+                }
         </Form.Group>
         </Form>
     );
