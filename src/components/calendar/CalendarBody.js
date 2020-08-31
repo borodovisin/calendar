@@ -3,6 +3,7 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import styled from 'styled-components';
 import moment from 'moment';
+import { inject, observer } from 'mobx-react';
 import range from 'lodash/range';
 import chunk from 'lodash/chunk';
 import flow from 'lodash/flow';
@@ -19,12 +20,12 @@ const StyledRow = styled(Row)`
 
 const getValues = (list, active) => list.map(item => ({ value: item, active }));
 
-const CalendarBody = () => {
+const CalendarBody = props => {
     const getCalendarDays = () => {
-        const lastDayOfCurrentMonth = moment().subtract('months')
-        .startOf('month').daysInMonth();
-        const lastDayPreviousMonth = moment().subtract(1, 'months')
-        .startOf('month').daysInMonth();
+        const lastDayOfCurrentMonth = moment().month(props.store.month)
+            .subtract('months').startOf('month').daysInMonth();
+        const lastDayPreviousMonth = moment().month(props.store.month)
+            .subtract(1, 'months').startOf('month').daysInMonth();
         const daysFromNextMonth = (35 - 2 - lastDayOfCurrentMonth);
 
         return chunk([{ value: (lastDayPreviousMonth - 1), active: false }, 
@@ -64,4 +65,4 @@ const CalendarBody = () => {
     );
 };
 
-export default CalendarBody;
+export default inject('store')(observer(CalendarBody));

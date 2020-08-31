@@ -8,3 +8,5 @@ export const  defaultColor = { hsl: { h: 182.36220472440942,
     oldHue: 182.36220472440942,
     source: "hsl"
 };
+
+export const dateFormat = 'YYYY-MM-D';

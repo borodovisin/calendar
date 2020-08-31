@@ -13,6 +13,7 @@ import { nanoid } from 'nanoid';
 
 import popover from '../popover/popover';
 import Reminder from './Reminder';
+import { dateFormat } from '../../utils/constants';
 
 const StyledCol = styled(Col)`
     && {
@@ -22,8 +23,9 @@ const StyledCol = styled(Col)`
 `;
 
 const CalendarDay = props => {
-    const keyDay = moment().set('date', props.day).format('YYYY-MM-D');
-    const currentDay = moment().date();
+    const keyDay = moment().month(props.store.month)
+        .set('date', props.day).format(dateFormat);
+    const currentDate = moment().format(dateFormat);
     const getColClassName = () => {
         let className = '';
 
@@ -31,13 +33,14 @@ const CalendarDay = props => {
         if (!props.isActive) className += ' disabled';
         return className;
     };
-    const getDayClassName = () => (props.day === currentDay && props.isActive) ?
+    const getDayClassName = () => (keyDay === currentDate &&
+        props.isActive) ?
         'calendar-day calendar-day-active' : 'calendar-day';
 
     const getReminder = () => {
         const reminder = get(props.store.reminder, keyDay, {});
 
-        if (!isEmpty(reminder)) {
+        if (!isEmpty(reminder) && props.isActive) {
             const sortedReminder = keys(reminder).sort();
 
             return map(sortedReminder, key => (<Reminder
@@ -64,7 +67,7 @@ const CalendarDay = props => {
             <StyledCol
                 className={getColClassName()}>   
                 <span className={getDayClassName(keyDay)}>{props.day}</span>
-                {hasReminder() &&
+                {props.isActive && hasReminder() &&
                     <i className="fa fa-trash float-right text-danger hand-cursor"
                     style={{ marginRight: '2px' }}
                     title="Delete all"

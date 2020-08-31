@@ -5,24 +5,35 @@ import { inject, observer }  from 'mobx-react';
 import styled from 'styled-components';
 import moment from 'moment';
 
-const StyledRow = styled(Row)`
-    && {
-        background: #cce5ff;
-        color: #004085;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        margin: 10px 5px 0 5px;
-        border: 1px solid #004085;
-        font-weight: bold;
-    }
-`;
+import { StyledRow } from '../../utils/styledComponent';
 
 const CalendarHeader = props => {
     const monthName = moment().month(props.store.month).format('MMMM');
 
+    const handlePreviousMonth = () => {
+        props.store.setMonth(( props.store.month - 1));
+    };
+
+    const handleNextMonth = () => {
+        props.store.setMonth(( props.store.month + 1));
+    };
+
     return (<React.Fragment>
         <Row className="text-center">
-            <Col lg={true}>{monthName}</Col>
+            <Col lg={5} className="no-padding">
+                <i
+                    className="fa fa-chevron-circle-left float-right no-padding icon-margin-top"
+                    onClick={handlePreviousMonth}>
+                    </i>
+            </Col>
+            <Col lg={2} className="no-padding month">{monthName}</Col>
+            <Col lg={5} className="no-padding">
+                <i
+                    className="fa fa-chevron-circle-right float-left no-padding icon-margin-top"
+                    onClick={handleNextMonth}
+                >
+                </i>
+            </Col>
         </Row>
         <StyledRow className="text-center">
             <Col lg={true}>Sunday</Col>

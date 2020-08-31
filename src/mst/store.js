@@ -40,7 +40,7 @@ const Store = types.model("Store", {
         self.selectedKey = fullKey;
     },
     setMonth(month) {
-        self.month = month;
+        if (month >= 0 && month < 12) self.month = month;
     }
 }));
 
