@@ -13,9 +13,11 @@ const StyledRow = styled(Row)`
     && {
         padding: 0;
         margin: 0 5px 0 5px;
-        height: 18.5vh;
+        height: 18vh;
     }
 `;
+
+const getValues = (list, active) => list.map(item => ({ value: item, active }));
 
 const CalendarBody = () => {
     const getCalendarDays = () => {
@@ -25,30 +27,32 @@ const CalendarBody = () => {
         .startOf('month').daysInMonth();
         const daysFromNextMonth = (35 - 2 - lastDayOfCurrentMonth);
 
-        return chunk([(lastDayPreviousMonth - 1), lastDayPreviousMonth,
-            ...range(1, (lastDayOfCurrentMonth + 1)),
-            ...range(1, (daysFromNextMonth + 1))], 7);
+        return chunk([{ value: (lastDayPreviousMonth - 1), active: false }, 
+            { value: lastDayPreviousMonth, active: false },
+            ...getValues(range(1, (lastDayOfCurrentMonth + 1)), true),
+            ...getValues(range(1, (daysFromNextMonth + 1)), false)], 7);
     };
-
-    const getActiveDay = day => moment().date() === day;
 
     const getCalendarRow = element => {
         const firstDay = element.shift();
         const lastDay = element.pop();
 
         return (<React.Fragment>
-                <CalendarDay day={firstDay} isDark />
-                {element.map(day => (<CalendarDay
-                        key={day}
-                        day={day} 
+                <CalendarDay day={firstDay.value} isActive={firstDay.active}
+                    isDark />
+                {element.map(item => (<CalendarDay
+                        key={item.value}
+                        day={item.value} 
+                        isActive={item.active}
                     />))}
-                <CalendarDay day={lastDay} isDark />
+                <CalendarDay day={lastDay.value} isActive={lastDay.active}
+                    isDark />
             </React.Fragment>);
     };
 
     const getComponentByDays = dayList => {
         return dayList.map(element => 
-            (<StyledRow key={new Buffer(element).toString('base64')}>
+            (<StyledRow key={element.map(i => i.value).join('')}>
                 {getCalendarRow(element)}
             </StyledRow>)
         );

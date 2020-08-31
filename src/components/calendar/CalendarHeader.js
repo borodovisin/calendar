@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { inject, observer }  from 'mobx-react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 const StyledRow = styled(Row)`
     && {
@@ -15,8 +17,14 @@ const StyledRow = styled(Row)`
     }
 `;
 
-const CalendarHeader = () => {
-    return (<StyledRow className="text-center">
+const CalendarHeader = props => {
+    const monthName = moment().month(props.store.month).format('MMMM');
+
+    return (<React.Fragment>
+        <Row className="text-center">
+            <Col lg={true}>{monthName}</Col>
+        </Row>
+        <StyledRow className="text-center">
             <Col lg={true}>Sunday</Col>
             <Col lg={true}>Monday</Col>
             <Col lg={true}>Tuesday</Col>
@@ -24,7 +32,8 @@ const CalendarHeader = () => {
             <Col lg={true}>Thursday</Col>
             <Col lg={true}>Friday</Col>
             <Col lg={true}>Saturday</Col>
-        </StyledRow>);
+        </StyledRow>
+    </React.Fragment>);
 };
 
-export default CalendarHeader;
+export default inject('store')(observer(CalendarHeader));

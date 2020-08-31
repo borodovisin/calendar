@@ -24,8 +24,14 @@ const StyledCol = styled(Col)`
 const CalendarDay = props => {
     const keyDay = moment().set('date', props.day).format('YYYY-MM-D');
     const currentDay = moment().date();
-    const getColClassName = () => props.isDark ? ' col-dark' : '';
-    const getDayClassName = () => props.day === currentDay ?
+    const getColClassName = () => {
+        let className = '';
+
+        if (props.isDark) className += ' col-dark';
+        if (!props.isActive) className += ' disabled';
+        return className;
+    };
+    const getDayClassName = () => (props.day === currentDay && props.isActive) ?
         'calendar-day calendar-day-active' : 'calendar-day';
 
     const getReminder = () => {
@@ -49,7 +55,7 @@ const CalendarDay = props => {
     };
     
     return (<OverlayTrigger
-            trigger="click"
+            trigger={props.isActive ? 'click' : ''}
             rootClose
             placement="auto"
             overlay={popover(keyDay)}
@@ -76,7 +82,8 @@ const CalendarDay = props => {
 
 CalendarDay.propTypes = {
     day: PropTypes.number.isRequired,
-    isDark: PropTypes.bool
+    isDark: PropTypes.bool,
+    isActive: PropTypes.bool
 };
 
 CalendarDay.defaultProps  = {

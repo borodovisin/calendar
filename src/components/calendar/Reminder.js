@@ -20,7 +20,7 @@ const Reminder = props => {
             props.reminder, 'startTime.value', '')} - ${get(
                 props.reminder, 'endTime.value', '')})`;
 
-    return (<Col lg={3} key={nanoid()}
+    return (<Col lg={2} key={nanoid()}
                 style={{ paddingBottom: '20px' }}>
         <OverlayTrigger
             placement='auto'
@@ -30,7 +30,7 @@ const Reminder = props => {
                 </Tooltip>
             }
             >
-            <i className="fa fa-bell fa-lg hand-cursor"
+            <i className="fa fa-calendar fa-lg hand-cursor"
                 style={{ color: get(props, 'reminder.color.hex') }}
                 data-reminder={`${props.keyDay}.${props.time}`}
                 onClick={handleReminderClick}></i>

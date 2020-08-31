@@ -19,19 +19,19 @@ code {
 
 .calendar-day {
   margin-top: 2px;
-  margin-left: 2px;
+  margin-left: 4px;
   font-weight: bold;
 }
 
 .calendar-day-active {
   display: inline-block;
-  background: #fff3cd;
+  background: #ffc107;
   border-radius: 50%;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   text-align: center;
   line-height: 26px;
-  color: #856404;
+  color: #343a40;
 }
 
 .container-fluid:nth-child(2) {
@@ -60,11 +60,38 @@ button.close
 }
 
 .container-reminder {
-  padding-left: 4px;
+  padding-left: 9px;
   max-height: 144px;
   overflow: auto;
+  scrollbar-color: #555 #f1f1f1;
+  scrollbar-width: thin;
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: #888;
 }
 
 .hand-cursor {
   cursor: pointer;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

@@ -9,7 +9,8 @@ import isEmpty from 'lodash/isEmpty';
 const Store = types.model("Store", {
     reminder: types.frozen({}),
     selectedReminder:  types.frozen({}),
-    selectedKey:  types.string
+    selectedKey:  types.string,
+    month: types.number
 })
 .views(self => ({
     hasReminder(key) {
@@ -18,7 +19,8 @@ const Store = types.model("Store", {
 }))
 .actions(self => ({
     setReminder(key, reminder) {
-        self.reminder = merge(cloneDeep(self.reminder),
+        self.reminder = merge(omit(cloneDeep(self.reminder),
+            `${key}.${reminder.startTime.value}`),
             { [key]: { [reminder.startTime.value]: reminder } });
     },
     removeReminder(fullKey) {
@@ -36,6 +38,9 @@ const Store = types.model("Store", {
     },
     setSelectedKey(fullKey = '')  {
         self.selectedKey = fullKey;
+    },
+    setMonth(month) {
+        self.month = month;
     }
 }));
 

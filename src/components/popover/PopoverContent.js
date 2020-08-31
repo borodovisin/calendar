@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import Select from 'react-select';
 import debounce from 'lodash/debounce';
@@ -29,7 +30,6 @@ const PopoverContent = props => {
     const findCityWeather = debounce(event => {
         getWeatherApi(event.target.value).then(icon => {
             setIcon(getIcon(icon));
-            if (isEmpty(icon)) setCity('');
             setSpinner(null);
         });
     }, 1000);
@@ -44,6 +44,7 @@ const PopoverContent = props => {
 
     const handleStartTimeChange = ({ value }) => {
         setStartTime(selectOptions.find(item => item.value  === value));
+        setEndTime(null);
     };
 
     const handleEndTimeChange = ({ value }) => {
@@ -130,6 +131,7 @@ const PopoverContent = props => {
                             maxLength="30"
                             required
                             value={city}
+                            isInvalid={isEmpty(icon)}
                             onChange={handleCityChange}
                         />
                         <Form.Control.Feedback type="invalid">
@@ -166,6 +168,11 @@ const PopoverContent = props => {
         </Form.Group>
         </Form>
     );
+};
+
+PopoverContent.propTypes = {
+    dayKey: PropTypes.string.isRequired,
+    store: PropTypes.object
 };
 
 export default inject('store')(observer(PopoverContent));
