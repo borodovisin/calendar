@@ -1,6 +1,11 @@
 # Calendar component to create reminders
 
 ## Available Scripts
+First step you need to install node package using
+
+### nmp i
+
+## Available Scripts
 
 In the project directory, you can run:
 
