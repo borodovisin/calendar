@@ -1,4 +1,4 @@
-# Calendar componwnt to create reminders
+# Calendar component to create reminders
 
 ## Available Scripts
 
