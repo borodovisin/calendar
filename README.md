@@ -3,7 +3,7 @@
 ## Available Scripts
 First step you need to install node package using
 
-### nmp i
+### `nmp i`
 
 ## Available Scripts
 
