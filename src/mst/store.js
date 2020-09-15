@@ -19,12 +19,18 @@ const Store = types.model("Store", {
 }))
 .actions(self => ({
     setReminder(key, reminder) {
+        const [dateKey, timeKey] = isEmpty(self.selectedKey) ?
+            [key, reminder.startTime.value] :
+            self.selectedKey.split('.');
+
         self.reminder = merge(omit(cloneDeep(self.reminder),
             `${key}.${reminder.startTime.value}`),
-            { [key]: { [reminder.startTime.value]: reminder } });
+            { [dateKey]: { [timeKey]: reminder } });
+        self.cleanSelection();
     },
     removeReminder(fullKey) {
         self.reminder = omit(cloneDeep(self.reminder), fullKey);
+        self.cleanSelection();
     },
     removeAllReminders(key) {
         self.reminder = omit(cloneDeep(self.reminder), key);
