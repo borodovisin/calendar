@@ -10,6 +10,7 @@ const getWeatherApi = async (city) => {
         if (isEmpty(city)) return '';
         const result = await fetch(getUrl(city));
         const response = await result.json();
+        
         return get(response, 'weather[0].icon', '');
     } catch (ex) {
         return '';
