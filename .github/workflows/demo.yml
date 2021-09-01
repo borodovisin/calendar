@@ -7,5 +7,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: stefanoeb/jest-action@1.0.3
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Run test cases
+        uses: stefanoeb/jest-action@1.0.3
