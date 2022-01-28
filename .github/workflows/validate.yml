@@ -25,3 +25,12 @@ jobs:
 
       - name: Run test cases
         run: npm run test
+
+      - name: ▶️ Run linters
+          uses: wearerequired/lint-action@v1
+          with:
+              eslint: true
+              prettier: true
+              eslint_args: "--max-warnings 0"
+              prettier_args: "--max-warnings 0"
+              continue_on_error: false

@@ -8,8 +8,8 @@ import get from 'lodash/get';
 
 const Reminder = props => {
     const handleReminderClick = event => {
-        const  selectedKey = get(event, 'target.dataset.reminder');
-        const currentReminder = get(props, `store.reminder[${selectedKey}]`);
+const  selectedKey = get(event, 'target.dataset.reminder');
+const currentReminder = get(props, `store.reminder[${selectedKey}]`);
         
        props.store.setSelectedReminder(currentReminder);
        props.store.setSelectedKey(selectedKey);
