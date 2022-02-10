@@ -34,3 +34,6 @@ jobs:
             eslint_args: "--max-warnings 0"
             prettier_args: "--max-warnings 0"
             continue_on_error: false
+
+      - name: ⬆️ Upload coverage report
+        uses: codecov/codecov-action@v1
