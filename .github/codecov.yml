@@ -26,7 +26,7 @@ flags:
   store:
     carryforward: false
     paths:
-      - src/mst/store.js
+      - src/mst/store
 
 github_checks:
   annotations: true
