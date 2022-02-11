@@ -28,32 +28,32 @@ jobs:
 
       - name: Generate general coverage report
         use: codecov/codecov-action@v1
-        with: 
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/reports/
-          files: clover.xml
+        # with: 
+        #   token: ${{ secrets.CODECOV_TOKEN }}
+        #   directory: ./coverage/reports/
+        #   files: clover.xml
 
-      - name: Run test cases flag store
-        run: npm test --ci --coverage ./src/__tests__/store.test.js
+      # - name: Run test cases flag store
+      #   run: npm test --ci --coverage ./src/__tests__/store.test.js
 
-      - name: Generate coverage for flag store
-        use: codecov/codecov-action@v1
-        with: 
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: store,
-          directory: ./coverage/reports/
-          files: clover.xml
+      # - name: Generate coverage for flag store
+      #   use: codecov/codecov-action@v1
+      #   with: 
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     flags: store,
+      #     directory: ./coverage/reports/
+      #     files: clover.xml
 
-      - name: Run test cases flag calendar
-        run: npm test --ci --coverage ./src/__tests__/CalendarDay.test.js
+      # - name: Run test cases flag calendar
+      #   run: npm test --ci --coverage ./src/__tests__/CalendarDay.test.js
 
-      - name: Generate coverage for flag calendar
-        use: codecov/codecov-action@v1
-        with: 
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: calendar,
-          directory: ./coverage/reports/
-          files: clover.xml
+      # - name: Generate coverage for flag calendar
+      #   use: codecov/codecov-action@v1
+      #   with: 
+      #     token: ${{ secrets.CODECOV_TOKEN }}
+      #     flags: calendar,
+      #     directory: ./coverage/reports/
+      #     files: clover.xml
 
       # - name: ▶️ Run linters
       #   uses: wearerequired/lint-action@v1
