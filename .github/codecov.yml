@@ -1,8 +1,7 @@
 coverage:
   status:
     project:
-      default:
-        target: 30%
+      default: off
     patch:
       calendar: 
         target: 0%
