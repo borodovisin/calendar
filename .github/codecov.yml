@@ -1,0 +1,32 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 50%
+    patch:
+      calendar: 
+        target: 50%
+        threshold: 0.01%
+        flags:
+          - calendar
+      store:
+        target: 100%
+        threshold: 0.01%
+        flags:
+          - store
+
+comment:
+  layout: "diff, flags, files"
+
+flags: 
+  calendarDay:
+    carryforward: false
+    paths:
+      - src/components
+  store:
+    carryforward: false
+    paths:
+      - src/mst/store
+
+github_checks:
+  annotations: true
