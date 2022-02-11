@@ -20,11 +20,11 @@ comment:
 
 flags: 
   calendarDay:
-    carryforward: false
+    carryforward: true
     paths:
       - src/components
   store:
-    carryforward: false
+    carryforward: true
     paths:
       - src/mst/store
 
