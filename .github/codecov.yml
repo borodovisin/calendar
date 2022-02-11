@@ -6,12 +6,12 @@ coverage:
     patch:
       calendar: 
         target: 0%
-        threshold: 0.01%
+        threshold: 1%
         flags:
           - calendar
       store:
         target: 100%
-        threshold: 0.01%
+        threshold: 1%
         flags:
           - store
 
@@ -20,13 +20,11 @@ comment:
 
 flags: 
   calendar:
-    carryforward: false
     paths:
       - src/components
   store:
-    carryforward: false
     paths:
-      - src/mst/store
+      - src/mst
 
 github_checks:
   annotations: true
