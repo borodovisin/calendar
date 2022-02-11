@@ -1,4 +1,4 @@
-import { getHours } from '../utils/commons';
+import { getHours } from '../../utils/commons';
 
 test('Test getHours functions', () => {
     const hourList = getHours();

@@ -2,8 +2,8 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import PopoverContent from '../components/popover/PopoverContent';
-import createStore from '../mst/createStore';
+import PopoverContent from '../../components/popover/PopoverContent';
+import createStore from '../../mst/createStore';
 
 describe('PopoverContent suite test', () => {
     const mockStore = createStore();
