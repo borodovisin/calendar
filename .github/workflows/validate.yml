@@ -24,7 +24,7 @@ jobs:
           useLockFile: false
 
       - name: Run test cases
-        run: npm test -- --ci --coverage --watchAll=false
+        run: npm test
 
       - name: Generate general coverage report
         use: codecov/codecov-action@v1
@@ -34,7 +34,7 @@ jobs:
           files: clover.xml
 
       - name: Run test cases flag store
-        run: npm test -- --ci --coverage --watchAll=false ./src/__tests__/store.test.js
+        run: npm test --ci --coverage ./src/__tests__/store.test.js
 
       - name: Generate coverage for flag store
         use: codecov/codecov-action@v1
@@ -45,7 +45,7 @@ jobs:
           files: clover.xml
 
       - name: Run test cases flag calendar
-        run: npm test -- --ci --coverage --watchAll=false ./src/__tests__/CalendarDay.test.js
+        run: npm test --ci --coverage ./src/__tests__/CalendarDay.test.js
 
       - name: Generate coverage for flag calendar
         use: codecov/codecov-action@v1
