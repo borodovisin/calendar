@@ -1,0 +1,29 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 30%
+      calendar: 
+        target: 0%
+        threshold: 1%
+        flags:
+          - calendar
+      store:
+        target: 100%
+        threshold: 1%
+        flags:
+          - store
+
+comment:
+  layout: "diff, flags, files"
+
+flags: 
+  calendar:
+    paths:
+      - src/components
+  store:
+    paths:
+      - src/mst
+
+github_checks:
+  annotations: true

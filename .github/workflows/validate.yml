@@ -24,16 +24,27 @@ jobs:
           useLockFile: false
 
       - name: Run test cases
-        run: npm run test
-
-      # - name: ▶️ Run linters
-      #   uses: wearerequired/lint-action@v1
-      #   with:
-      #       eslint: true
-      #       prettier: true
-      #       eslint_args: "--max-warnings 0"
-      #       prettier_args: "--max-warnings 0"
-      #       continue_on_error: false
+        run: npm run test --ci --coverage 
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Run test cases for calendar
+        run: npm run test --ci --coverage ./src/__tests__/calendar
+
+      - name: ⬆️ Upload coverage report
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: calendar
+
+      - name: Run test cases for store
+        run: npm run test --ci --coverage ./src/__tests__/store
+
+      - name: ⬆️ Upload coverage report
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: store
