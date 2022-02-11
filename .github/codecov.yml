@@ -19,7 +19,7 @@ comment:
   layout: "diff, flags, files"
 
 flags: 
-  calendarDay:
+  calendar:
     carryforward: false
     paths:
       - src/components

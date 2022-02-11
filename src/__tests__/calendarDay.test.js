@@ -19,14 +19,14 @@ describe('PopoverContent suite test', () => {
         expect(screen.getByText('1')).toBeInTheDocument();
     });
 
-    test('Should render popover', () => {
-        const wrapper = mount(<CalendarDay
-                store={mockStore} isActive day={1} isDark={false} />);
+    // test('Should render popover', () => {
+    //     const wrapper = mount(<CalendarDay
+    //             store={mockStore} isActive day={1} isDark={false} />);
 
-        expect(wrapper.props().isActive).toBe(true);
-        expect(wrapper.props().day).toBe(1);
-        expect(wrapper.props().store).toMatchObject(mockStore);
-        expect(wrapper.props().isDark).toBe(false);
-    });
+    //     expect(wrapper.props().isActive).toBe(true);
+    //     expect(wrapper.props().day).toBe(1);
+    //     expect(wrapper.props().store).toMatchObject(mockStore);
+    //     expect(wrapper.props().isDark).toBe(false);
+    // });
 
 });
