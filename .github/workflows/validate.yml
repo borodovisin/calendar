@@ -24,7 +24,7 @@ jobs:
           useLockFile: false
 
       - name: Run test cases
-        run: npm run test
+        run: npm run test --ci --coverage
 
       # - name: ▶️ Run linters
       #   uses: wearerequired/lint-action@v1
