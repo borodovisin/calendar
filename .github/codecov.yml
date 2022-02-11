@@ -24,9 +24,9 @@ flags:
     paths:
       - src/components
   store:
-    carryforward: true
+    carryforward: false
     paths:
-      - src/mst/store
+      - src/mst/store.js
 
 github_checks:
   annotations: true
