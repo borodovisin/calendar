@@ -9,13 +9,13 @@ describe('Global mst testing suite', () => {
         store = createStore();
     });
 
-    // test('Should has properties', () => {
-    //     expect(store).toHaveProperty('reminder');
-    //     expect(store).toHaveProperty('selectedReminder');
-    //     expect(store).toHaveProperty('selectedKey');
-    //     expect(store).toHaveProperty('month');
+    test('Should has properties', () => {
+        expect(store).toHaveProperty('reminder');
+        expect(store).toHaveProperty('selectedReminder');
+        expect(store).toHaveProperty('selectedKey');
+        expect(store).toHaveProperty('month');
     
-    // });
+    });
 
     // test('Should has actions', () => {
     //     expect(store).toHaveProperty('setReminder');
