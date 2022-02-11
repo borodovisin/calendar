@@ -2,10 +2,10 @@ coverage:
   status:
     project:
       default:
-        target: 50%
+        target: 30%
     patch:
       calendar: 
-        target: 50%
+        target: 0%
         threshold: 0.01%
         flags:
           - calendar
